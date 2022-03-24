@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+  front:
+    container_name: client
+    build: 
+      dockerfile: Dockerfile.client 
+      context: .
+    networks:
+      - frontend
+  back:
+    container_name: server
+    build:
+      dockerfile: Dockerfile.server
+      context: ./server
+    networks:
+      - frontend
+      - backend
+  db:
+    container_name: DB
+    build:
+      dockerfile: Dockerfile.DB
+      context: . 
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+    driver_opts:
+      foo: "1"
+      bar: "2"

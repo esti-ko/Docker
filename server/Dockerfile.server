@@ -1,0 +1,18 @@
+From node:17-alpine3.14 
+
+EXPOSE 5000
+
+ENV X=2
+
+# COPY ./hello.txt .
+COPY ./package.json .
+
+RUN npm i
+
+COPY . .
+
+ENTRYPOINT [ "npm" ]
+
+CMD ["run dev"]
+
+

@@ -1,0 +1,9 @@
+FROM alpine
+
+EXPOSE 1010
+
+COPY ./DB.json .
+
+ENTRYPOINT ["sleep" ]
+
+CMD 500000

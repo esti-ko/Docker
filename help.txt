@@ -10,6 +10,10 @@ services:
   #     - frontend
   back:
     container_name: server
+    depends_on:
+      db:
+        condition: service_healthy
+
     build:
       dockerfile: Dockerfile.server
       context: ./server
@@ -18,11 +22,17 @@ services:
       - backend
   db:
     container_name: DB
-    image: mongo:latest
+    healthcheck:
+      test: mysql -u root -proot 
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    image: mysql:5.6
+    # volumes:
+    #   -./api/public:/srv/api/public:ro
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-    volumes: ./DB:/Data
+      MYSQL_ROOT_PASSWORD: root
     # build:
     #   dockerfile: Dockerfile.DB
     #   context: . 
@@ -37,3 +47,5 @@ networks:
     driver_opts:
       foo: "1"
       bar: "2"
+
+      image: mongo:latest 

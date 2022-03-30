@@ -13,6 +13,6 @@ COPY . .
 
 ENTRYPOINT [ "npm" ]
 
-CMD ["run dev"]
+CMD ["start"]
 
 

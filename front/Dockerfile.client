@@ -1,0 +1,20 @@
+From node:17-alpine3.14 
+
+EXPOSE 3000
+
+COPY ./package.json .
+
+RUN npm i
+
+# COPY ./client/public dest
+
+# COPY ./client/src .
+
+# ENV d=value
+
+COPY . .
+
+ENTRYPOINT ["npm"]
+
+CMD [ "start"]
+

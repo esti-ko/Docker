@@ -2,8 +2,8 @@ FROM alpine
 
 EXPOSE 1010
 
-COPY ./DB.json .
+COPY ./DB.js .
 
-ENTRYPOINT ["sleep" ]
+ENTRYPOINT ["sleep"]
 
-CMD 500000
+CMD '50000000'
